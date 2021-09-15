@@ -5,6 +5,27 @@ import ReactDom from "react-dom";
 
 import "./index.css";
 
+////////////// setup vars
+
+const books = [
+  {
+    title: "1984",
+    author: "George Orwell",
+    img: "https://images-na.ssl-images-amazon.com/images/I/71Zp9MEo6MS._AC_UL200_SR200,200_.jpg",
+  },
+  {
+    title: "Mutlu Olma Sanatı",
+    author: "Arthur Schopenhauer",
+    img: "https://images-na.ssl-images-amazon.com/images/I/41DHXGEEnpL._SX329_BO1,204,203,200_.jpg",
+  },
+  ,
+  {
+    title: "Zacharius Usta",
+    author: "Vules Verne ",
+    img: "https://images-na.ssl-images-amazon.com/images/I/51ujS6+lJaL._SX292_BO1,204,203,200_.jpg",
+  },
+];
+
 // function Greeting() {
 //   return <h2>This is Serkan and this is my first components.</h2>;
 // }
@@ -86,43 +107,21 @@ import "./index.css";
 function BookList() {
   return (
     <section className="booklist">
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      {books.map((book) => {
+        return <Book book={book}></Book>;
+      })}
     </section>
   );
 }
-function Book() {
+function Book(props) {
+  const { img, title, author } = props.book;
+
   return (
     <article className="book">
-      <Image></Image>
-      <Title></Title>
-      <Author></Author>
+      <img src={img} alt="" />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
     </article>
   );
 }
-
-function Image() {
-  return (
-    <img
-      src="https://images-na.ssl-images-amazon.com/images/I/71Zp9MEo6MS._AC_UL200_SR200,200_.jpg"
-      alt=""
-      srcset=""
-    />
-  );
-}
-
-function Title() {
-  return <h1>1984</h1>;
-}
-function Author() {
-  return <h4>George Orwell</h4>;
-}
-
 ReactDom.render(<BookList />, document.getElementById("root"));
